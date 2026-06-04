@@ -9,5 +9,14 @@
   <p>Эмийг зөвхөн эмчийн заалтаар хэрэглэнэ.Энэхүү сайт нь мэдээллийг хүргэнэ. </p>
 </body>
 </html>
+<script>
 const routes = {
-  "/exforge": "/Exforge10.160mg.pdf",
+  "/exforge10": "/Exforge10.160mg.pdf"
+};
+
+const path = location.pathname;
+
+if (routes[path]) {
+  location.replace(routes[path]);
+}
+</script>
