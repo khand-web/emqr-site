@@ -1,23 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
   <title>Мэдээлэл</title>
 </head>
 <body>
   <h1>Эмийн хэрэглэх заавар 👋</h1>
-  <p>Эмийг зөвхөн эмчийн заалтаар хэрэглэнэ.Энэхүү сайт нь мэдээллийг хүргэнэ. </p>
+  <p>Эмийг зөвхөн эмчийн заалтаар хэрэглэнэ. Энэхүү сайт нь мэдээллийг хүргэнэ.</p>
+
+  <script>
+    const routes = {
+      "/exforge10": "/Exforge10.160mg.pdf",
+      "/uperio": "/Uperio49.51mg.pdf"
+    };
+
+    const path = location.pathname;
+
+    if (routes[path]) {
+      location.replace(routes[path]);
+    }
+  </script>
 </body>
 </html>
-<script>
-const routes = {
-  "/exforge10": "/Exforge10.160mg.pdf"
-};
-
-const path = location.pathname;
-
-if (routes[path]) {
-  location.replace(routes[path]);
-}
-</script>
-"/uperio": "/Uperio49.51mg.pdf"
