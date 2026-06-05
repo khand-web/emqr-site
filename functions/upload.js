@@ -1,3 +1,3 @@
-export async function onRequestPost() {
-  return new Response("UPLOAD API WORKING");
+export async function onRequestPost({ request }) {
+  return new Response("UPLOAD API OK");
 }
