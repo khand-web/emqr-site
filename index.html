@@ -1,37 +1,15 @@
- <!DOCTYPE html>
-<html lang="mn">
-<head>
-  <meta charset="UTF-8">
-  <title>EMQR Admin</title>
-</head>
 
-<body style="font-family: Arial; max-width: 600px; margin: auto; padding-top: 40px;">
-
-<h2>Medicine Upload System</h2>
-
-<label>Medicine name</label><br>
-<input id="name" style="width:100%; padding:10px;"><br><br>
-
-<label>Slug (paracetamol гэх мэт)</label><br>
-<input id="slug" style="width:100%; padding:10px;"><br><br>
-
-<label>PDF file</label><br>
-<input type="file" id="file"><br><br>
-
-<button onclick="upload()" style="padding:10px 20px;">
-  Upload
-</button>
-
-<p id="status"></p>
-
-<script>
 async function upload() {
   const name = document.getElementById("name").value;
   const slug = document.getElementById("slug").value;
   const file = document.getElementById("file").files[0];
 
+  console.log("NAME:", name);
+  console.log("SLUG:", slug);
+  console.log("FILE:", file);
+
   if (!name || !slug || !file) {
-    document.getElementById("status").innerText = "Бүх талбарыг бөглөнө үү";
+    alert("Missing fields");
     return;
   }
 
@@ -40,22 +18,11 @@ async function upload() {
   form.append("slug", slug);
   form.append("file", file);
 
-  document.getElementById("status").innerText = "Uploading...";
+  const res = await fetch("/api/upload", {
+    method: "POST",
+    body: form
+  });
 
-  try {
-    const res = await fetch("/api/upload", {
-      method: "POST",
-      body: form
-    });
-
-    const text = await res.text();
-    document.getElementById("status").innerText = text;
-
-  } catch (err) {
-    document.getElementById("status").innerText = "Error: " + err;
-  }
+  const text = await res.text();
+  alert(text);
 }
-</script>
-
-</body>
-</html>
