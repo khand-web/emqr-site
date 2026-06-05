@@ -1,3 +1,3 @@
 export async function onRequest() {
-  return new Response("UPLOAD FUNCTION REACHED");
+  return new Response("UPLOAD FUNCTION OK");
 }
