@@ -1,3 +1,24 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <title>EMQR Admin</title>
+</head>
+
+<body style="font-family: Arial; max-width: 600px; margin: auto; padding-top: 40px;">
+
+<h2>Medicine Upload System</h2>
+
+<input id="name" placeholder="Medicine name" style="width:100%; padding:10px;"><br><br>
+
+<input id="slug" placeholder="slug (paracetamol)" style="width:100%; padding:10px;"><br><br>
+
+<input type="file" id="file"><br><br>
+
+<button onclick="upload()" style="padding:10px 20px;">Upload</button>
+
+<p id="status"></p>
+
 <script>
 async function upload() {
   const name = document.getElementById("name").value;
@@ -9,7 +30,7 @@ async function upload() {
   console.log("FILE:", file);
 
   if (!name || !slug || !file) {
-    alert("Missing fields");
+    document.getElementById("status").innerText = "Missing fields";
     return;
   }
 
@@ -18,12 +39,20 @@ async function upload() {
   form.append("slug", slug);
   form.append("file", file);
 
-  const res = await fetch("/api/upload", {
-    method: "POST",
-    body: form
-  });
+  try {
+    const res = await fetch("/api/upload", {
+      method: "POST",
+      body: form
+    });
 
-  const text = await res.text();
-  alert(text);
+    const text = await res.text();
+    document.getElementById("status").innerText = text;
+
+  } catch (err) {
+    document.getElementById("status").innerText = "Error: " + err;
+  }
 }
 </script>
+
+</body>
+</html>
