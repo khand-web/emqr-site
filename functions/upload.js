@@ -20,3 +20,5 @@ export async function onRequestPost({ request }) {
     { headers: { "Content-Type": "application/json" } }
   );
 }
+const text = await res.text();
+alert(text);
